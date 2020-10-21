@@ -40,7 +40,7 @@ I will explain how these two components work together.
 I've modified the sample app 4 to take in USB webcam input.
 This is an image of how the elements in the pipeline connect to one another:
 
-![The modified DeepStream pipeline](/img/deepstream/deepstream_pipeline.svg)
+![The modified DeepStream pipeline](./img/deepstream/deepstream_pipeline.svg)
 
 ### Lifecycle of the pipeline
 
@@ -111,7 +111,7 @@ actually knows a thing or two about GStreamer.)
 See also
 [this GStreamer tutorial on tees and multithreading](https://gstreamer.freedesktop.org/documentation/tutorials/basic/multithreading-and-pad-availability.html?gi-language=c)
 
-![](/img/gstreamer/gstreamer_pad.png)
+![](./img/gstreamer/gstreamer_pad.png)
 
 ## Buffer probe
 

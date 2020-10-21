@@ -4,7 +4,7 @@ This repo contains the
 
 It is divided into two parts as shown in this image:
 
-![DeepStream pipeline architecture](./img/deepstream_pipeline.svg)
+![DeepStream pipeline architecture](./img/pipeline_architecture.svg)
 
 The pipeline that lives on the Jetson is called `jetson-ml`.
 This is the DeepStream pipeline that takes in input
