@@ -40,7 +40,7 @@ I will explain how these two components work together.
 I've modified the sample app 4 to take in USB webcam input.
 This is an image of how the elements in the pipeline connect to one another:
 
-![The modified DeepStream pipeline](./img/deepstream/deepstream_pipeline.svg)
+![The modified DeepStream pipeline](./img/deepstream/deepstream_pipeline.png)
 
 ### Lifecycle of the pipeline
 
