@@ -14,20 +14,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	python3-pip \
 	python3-dev
 
+
 # Install LibRealSense from source
-git clone https://github.com/IntelRealSense/librealsense.git
-cd librealsense
+RUN git clone https://github.com/IntelRealSense/librealsense.git
 ## Install the core packages required to build librealsense libs
-sudo apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
+RUN apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
 ### Distribution-specific packages for Ubuntu 18
-sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+RUN apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
 ### Run Intel Realsense permissions script
-./scripts/setup_udev_rules.sh
+WORKDIR ./librealsense
+# Make sure that your RealSense cameras are disconnected at this point
+RUN ./scripts/setup_udev_rules.sh
 # Now starting the build
-mkdir build && cd build
+RUN mkdir build && cd build
 ## CMake with Python bindings
 ## see link: https://github.com/IntelRealSense/librealsense/tree/master/wrappers/python#building-from-source
-cmake ../ -DBUILD_PYTHON_BINDINGS:bool=true
+RUN cmake ../ -DBUILD_PYTHON_BINDINGS:bool=true
 ## Recompile and install librealsense binaries
-sudo make uninstall && make clean && make && sudo make install
-
+RUN make uninstall && make clean && make -j6 && make install
+RUN export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.6/pyrealsense2
