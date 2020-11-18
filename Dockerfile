@@ -22,9 +22,16 @@ RUN apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
 ### Distribution-specific packages for Ubuntu 18
 RUN apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
 ### Run Intel Realsense permissions script
+RUN pwd
 WORKDIR ./librealsense
+RUN pwd
+RUN ls ./config
 # Make sure that your RealSense cameras are disconnected at this point
-RUN ./scripts/setup_udev_rules.sh
+# RUN ./scripts/setup_udev_rules.sh
+RUN cp ./config/99-realsense-libusb.rules /etc/udev/rules.d/
+RUN apt-get install -y udev
+RUN udevadm control --reload-rules
+RUN udevadm trigger
 # Now starting the build
 RUN mkdir build && cd build
 ## CMake with Python bindings
